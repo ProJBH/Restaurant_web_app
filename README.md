@@ -106,7 +106,7 @@ For a detailed view of the project structure, click below:
     ├── README.md
     └── tsconfig.json
 ```
-</detail>
+</details>
 ## Installation
 
 ### Prerequisites
