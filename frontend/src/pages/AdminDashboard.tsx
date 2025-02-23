@@ -1,6 +1,9 @@
 // src/pages/AdminDashboard.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Navbar from "../components/Navbar";
 
 interface MenuItem {
   id?: number;
@@ -63,6 +66,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Admin Dashboard</h1>
       <h2>Add / Edit Menu Item</h2>
       <form onSubmit={handleSubmit}>

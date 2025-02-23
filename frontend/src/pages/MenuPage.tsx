@@ -1,6 +1,9 @@
 // src/pages/MenuPage.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Navbar from "../components/Navbar";
 
 interface MenuItem {
   id: number;
@@ -21,6 +24,7 @@ const MenuPage: React.FC = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Our Menu</h1>
       {menuItems.map(item => (
         <div key={item.id} style={{ border: '1px solid #ddd', padding: '1rem', margin: '1rem 0' }}>

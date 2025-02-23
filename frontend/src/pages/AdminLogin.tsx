@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Navbar from "../components/Navbar";
 
 const AdminLogin: React.FC = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -32,6 +35,7 @@ const AdminLogin: React.FC = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Admin Login</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
