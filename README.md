@@ -138,7 +138,7 @@ For a detailed view of the project structure, click below:
 3. **Configure Environment Variables:**
    - In the backend directory, create a `.env` file with your configurations:
      ```env
-     PORT=5000
+     PORT=5001
      DB_HOST=localhost
      DB_USER=your_username
      DB_PASSWORD=your_password
