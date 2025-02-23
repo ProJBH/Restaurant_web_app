@@ -15,6 +15,7 @@ const HomePage: React.FC = () => {
         <h2>Advertisement</h2>
         <p>Enjoy our delicious meals!</p>
       </section>
+      {/* Add more static sections as needed */}
     </div>
   );
 };
