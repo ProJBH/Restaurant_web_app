@@ -1,11 +1,11 @@
 // src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import BookingPage from './pages/BookingPage';
-import MenuPage from './pages/MenuPage';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
+import HomePage from '../pages/HomePage';
+import BookingPage from '../pages/BookingPage';
+import MenuPage from '../pages/MenuPage';
+import AdminLogin from '../pages/AdminLogin';
+import AdminDashboard from '../pages/AdminDashboard';
 
 const App: React.FC = () => {
   return (
