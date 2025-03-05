@@ -19,7 +19,12 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav me-auto mb-2 mb-md-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/menu">
+              <a className="nav-link active" aria-current="page" href="/">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/menu">
                 Menu
               </a>
             </li>
@@ -29,8 +34,18 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/orderOnline">
+                Order Online
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/about">
+                About Us
+              </a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/admin/login">
-                Admin
+                Login
               </a>
             </li>
           </ul>
