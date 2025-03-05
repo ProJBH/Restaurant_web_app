@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Discount from "../components/Discount";
 
 const HomePage: React.FC = () => {
   return (
@@ -11,6 +12,9 @@ const HomePage: React.FC = () => {
         <Navbar />
         <h1>Welcome to Our Restaurant</h1>
       </header>
+      <section>
+        <Discount />
+      </section>
       <section>
         <h2>Advertisement</h2>
         <p>Enjoy our delicious meals!</p>
