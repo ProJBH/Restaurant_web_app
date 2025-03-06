@@ -1,0 +1,20 @@
+// 颜色系统
+$theme-colors: (
+  "primary": #ff4757,
+  "warning": #ffd700,
+  "discount": linear-gradient(45deg, #ff6b6b, #ff4757)
+);
+
+// 间距系统
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  // ...
+);
+
+// 引入Bootstrap源文件
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
