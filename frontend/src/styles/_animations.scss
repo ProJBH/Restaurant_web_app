@@ -1,3 +1,4 @@
+//frontend/src/styles/_animations.scss
 @mixin slide-in($direction: right) {
     @keyframes slideIn#{$direction} {
       0% { transform: translate(if($direction==right, 100%, -100%), 0); }

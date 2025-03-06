@@ -1,3 +1,4 @@
+//frontend/src/components/DiscountCarousel/DiscountCarousel.tsx
 /// <reference types="node" />
 import { useState, useEffect, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";

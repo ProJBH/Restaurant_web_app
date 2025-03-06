@@ -1,3 +1,4 @@
+//frontend/src/components/navbar.tsx
 import { Link } from "react-router-dom";
 
 function Navbar() {
