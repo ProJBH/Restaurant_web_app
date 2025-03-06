@@ -1,0 +1,14 @@
+@mixin slide-in($direction: right) {
+    @keyframes slideIn#{$direction} {
+      0% { transform: translate(if($direction==right, 100%, -100%), 0); }
+      100% { transform: translate(0, 0); }
+    }
+  }
+  
+  .gold-fall { // 金币掉落动画
+    animation: goldFall 1s ease-out;
+    @keyframes goldFall {
+      0% { transform: translateY(-100px) rotate(0deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+  }
