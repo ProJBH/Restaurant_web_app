@@ -10,6 +10,7 @@ import spicyNoodles from "../assets/SpicyNoodles.jpg";
 import grilledChicken from "../assets/GrilledChicken.jpg";
 import freshSalad from "../assets/FreshSalad.jpg";
 import FindUsOnline from "../components/FindUsOnline/FindUsOnline";
+import Contact from "../components/Contact/Contact";
 
 const HomePage: React.FC = () => {
   const discountItems = [
@@ -81,10 +82,8 @@ const HomePage: React.FC = () => {
       <FindUsOnline /> 
       </section>
       <section style={{ margin: "2rem 0" }}>
-        <h2>Advertisement</h2>
-        <p>Enjoy our delicious meals!</p>
+        <Contact />
       </section>
-      {/* 可根据需求添加更多静态区域 */}
     </div>
   );
 };
