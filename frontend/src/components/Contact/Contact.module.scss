@@ -1,0 +1,75 @@
+.contact {
+    width: 100%;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+  }
+  
+  .contactContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .leftColumn {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 2rem;
+    margin-left: 10rem; // 添加左侧空白
+  }
+  
+  .rightColumn {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+  }
+  
+  .contactItem {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .contactItem h4 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contactItem a {
+    color: #007bff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  .rightColumn h4 {
+    margin-bottom: 1rem;
+  }
+  
+  .hoursList {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+  
+  .hoursItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .hoursItem:last-child {
+    border-bottom: none;
+  }
+  
+  .days {
+    font-weight: bold;
+  }
+  
+  .hours {
+    color: #555;
+  }
+  
