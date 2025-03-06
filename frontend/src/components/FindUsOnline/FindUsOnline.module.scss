@@ -1,0 +1,54 @@
+.findUsOnline {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; // 可根据项目主题调整背景色
+  }
+  
+  .topSection {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .bottomSection {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Foodora图标的链接和图片样式 */
+  .iconLinkFoodora {
+    display: inline-block;
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  .iconFoodora {
+    width: 150px;   // Foodora图标尺寸
+    height: auto;
+    /* 可根据需求添加更多Foodora特有样式 */
+  }
+  
+  /* Wolt图标的链接和图片样式 */
+  .iconLinkWolt {
+    display: inline-block;
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+  
+  .iconWolt {
+    width: 170px;   // Wolt图标尺寸，可与Foodora不同
+    height: auto;
+    /* 可根据需求添加更多Wolt特有样式 */
+  }
+  
