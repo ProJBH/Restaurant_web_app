@@ -1,0 +1,87 @@
+// src/components/DiscountCarousel/DiscountCarousel.module.scss
+// ================= 核心依赖 =================
+@import "~bootstrap/scss/functions";        // 必须首先导入
+@import "~bootstrap/scss/variables";        // Bootstrap默认变量
+@import "~bootstrap/scss/maps";             // Maps工具（Bootstrap 5.3+新增）
+@import "~bootstrap/scss/mixins";           // 所有Mixin
+@import "~bootstrap/scss/utilities";        // 工具类基础定义
+@import "~bootstrap/scss/utilities/api";    // 工具类生成器
+
+// ================= 自定义覆盖 =================
+$position-values: (
+  0: 0,
+  1: 1rem,
+  2: 2rem,
+  3: 3rem
+);
+
+
+
+// 1. 覆盖Bootstrap变量（可选）
+$primary: #ff4757; // 覆盖Bootstrap默认主色
+$enable-gradients: true; // 启用渐变支持
+
+// 2. 自定义动画
+@keyframes steam-animation {
+  0% { opacity: 0; transform: translateY(0); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
+
+// 3. 组件样式容器（CSS Modules自动生成唯一类名）
+.carouselContainer {
+  position: relative;
+  transition: box-shadow 0.3s ease;
+
+  // 嵌套写法
+  &:hover {
+    box-shadow: 0 8px 25px rgba(255,71,87,0.3);
+  }
+}
+
+// 4. 折扣标签扩展样式
+.discountBadge {
+  background-color: var(--bs-danger); // 直接使用 Bootstrap 变量
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+  &::after { // 添加装饰三角
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    border: 10px solid transparent;
+    border-left-color: $primary;
+  }
+}
+
+// 5. 响应式适配
+@include media-breakpoint-down(md) { // Bootstrap断点系统
+  .infoBox {
+    padding: 1rem !important;
+    
+    h3 {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// ================= 组件样式 =================
+.discountLabel {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  // 其他样式保持原样
+  background-color: map-get($theme-colors, "danger");
+  color: $white;
+  padding: $spacer * 0.5 $spacer;
+  border-radius: $border-radius-pill;
+  z-index: 10;
+
+  @include media-breakpoint-down(md) {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: $spacer * 0.25 $spacer * 0.5;
+  }
+}
+
