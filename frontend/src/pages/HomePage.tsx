@@ -9,6 +9,7 @@ import dongpoPork from "../assets/dongpopork.jpg";
 import spicyNoodles from "../assets/SpicyNoodles.jpg";
 import grilledChicken from "../assets/GrilledChicken.jpg";
 import freshSalad from "../assets/FreshSalad.jpg";
+import FindUsOnline from "../components/FindUsOnline/FindUsOnline";
 
 const HomePage: React.FC = () => {
   const discountItems = [
@@ -61,7 +62,7 @@ const HomePage: React.FC = () => {
     <div>
       <header>
         <Navbar />
-        <h1>Welcome to Our Restaurant</h1>
+        <h1>""</h1>
       </header>
       <section style={{ margin: "2rem 0" }}>
         <DiscountCarousel 
@@ -75,6 +76,9 @@ const HomePage: React.FC = () => {
           carouselItems={popularItems}
           autoPlayInterval={5000}
         />
+      </section>
+      <section style={{ margin: "2rem 0" }}>
+      <FindUsOnline /> 
       </section>
       <section style={{ margin: "2rem 0" }}>
         <h2>Advertisement</h2>
