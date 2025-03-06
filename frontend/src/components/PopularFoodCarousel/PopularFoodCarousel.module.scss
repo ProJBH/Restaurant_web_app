@@ -1,0 +1,47 @@
+.popularFoodCarousel {
+    display: flex;
+    width: 100%;
+    height: 600px; // 可根据需要调整整体高度
+    position: relative;
+  }
+  
+  .leftColumn {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .topLeft,
+  .bottomLeft {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .flavors {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .rightColumn {
+    width: 50%;
+    position: relative;
+  }
+  
+  /* 修改轮播图区域，设置宽高为90%并自动居中 */
+  .carouselContainer {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+  
+  .indicatorContainer {
+    bottom: 1rem !important;
+  }
