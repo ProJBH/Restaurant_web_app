@@ -68,20 +68,31 @@ $enable-gradients: true; // 启用渐变支持
 
 // ================= 组件样式 =================
 .discountLabel {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  // 其他样式保持原样
-  background-color: map-get($theme-colors, "danger");
-  color: $white;
-  padding: $spacer * 0.5 $spacer;
-  border-radius: $border-radius-pill;
-  z-index: 10;
+  // 定位系统
+  position: absolute;  // 使用绝对定位，相对于最近的定位父元素
+  top: 1rem;          // 距顶部 1rem（Bootstrap 基础单位，通常 1rem=16px）
+  right: 1rem;        // 距右侧 1rem
 
-  @include media-breakpoint-down(md) {
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: $spacer * 0.25 $spacer * 0.5;
+  // 颜色系统
+  background-color: map-get($theme-colors, "danger");  // 从 Bootstrap 主题色获取红色
+  color: $white;  // 使用 Bootstrap 预定义的白色变量（值为 #fff）
+
+  // 间距系统
+  padding: $spacer * 0.5 $spacer;  // 垂直内边距 0.5rem，水平内边距 1rem
+  // $spacer 是 Bootstrap 的基础间距单位，默认 1rem
+
+  // 形状系统
+  border-radius: $border-radius-pill;  // 胶囊状圆角（默认 50rem）
+
+  // 层级控制
+  z-index: 10;  // 确保标签显示在常规内容上方
+
+  // 响应式适配
+  @include media-breakpoint-down(md) {  // Bootstrap 的移动端优先断点系统
+    // 当屏幕宽度 < 768px (md 断点) 时生效
+    top: 0.5rem;     // 缩小顶部间距
+    right: 0.5rem;   // 缩小右侧间距
+    padding: $spacer * 0.25 $spacer * 0.5;  // 调整为更紧凑的内边距
   }
 }
 
