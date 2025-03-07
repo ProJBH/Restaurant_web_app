@@ -2,8 +2,8 @@
 /// <reference types="node" />
 import { useState, useEffect, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from "./DiscountCarousel.module.scss"
-
+import styles from "./DiscountCarousel.module.scss";
+import onSale from "../../assets/OnSale.jpeg";
 
 interface CarouselItem {
   id: number;
@@ -65,12 +65,20 @@ const DiscountCarousel = ({
   return (
     <div
       className="position-relative overflow-hidden rounded-3 shadow-lg"
-      style={{ maxWidth: 1200, margin: "0 auto" }}
+      style={{
+        backgroundImage: `url(${onSale})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+      }}
       onMouseEnter={() => setIsAutoPlay(false)}
       onMouseLeave={() => setIsAutoPlay(true)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+    <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      
+    
       {/* 轮播项 */}
       <div className="position-relative" style={{ height: 600 }}>
         {items.map((item, index) => (
@@ -150,6 +158,7 @@ const DiscountCarousel = ({
             onClick={() => goToSlide(index)}
           />
         ))}
+      </div>
       </div>
     </div>
   );
