@@ -37,8 +37,12 @@ const upload = multer({ storage });
 // Get all menu items (public endpoint)
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const [rows] = await pool.execute('SELECT * FROM menu_items');
-    res.json(rows);
+    const [rows] = await pool.execute('SELECT * FROM menu');
+    // force rows to be [] in order to use .map functin, then Convert price to a number
+    const data = (rows as any[]).map(function(item: any) {
+      return { ...item, price: parseFloat(item.price) };
+    });
+    res.json(data);
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
