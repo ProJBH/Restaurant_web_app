@@ -96,6 +96,14 @@ const Menu: React.FC = () => {
             className={styles.modalCard}
             onClick={e => e.stopPropagation()}  // 阻止点击卡片内容关闭模态框
           >
+            {/* 如果存在 imageurl，则显示图片 */}
+            {selectedItem.imageurl && (
+              <img
+                src={selectedItem.imageurl}
+                alt={selectedItem.name}
+                className={styles.modalImage}
+              />
+            )}
             <h2>{selectedItem.name}</h2>
             <p>{selectedItem.description}</p>
             {selectedItem.allergy && (
