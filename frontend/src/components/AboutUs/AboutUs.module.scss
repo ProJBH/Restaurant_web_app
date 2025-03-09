@@ -1,0 +1,46 @@
+.aboutUs {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .sectionTitle {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .historySection {
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .chefImage {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+  }
+  
+  .chefBio {
+    font-size: 1rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  
