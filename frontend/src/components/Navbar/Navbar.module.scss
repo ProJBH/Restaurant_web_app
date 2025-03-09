@@ -1,14 +1,15 @@
 .navbarCustom {
-    background-color: #f8f9fa; // 可选：更改背景颜色为浅色
+    background-color: #cd8b10; // 可选：更改背景颜色为浅色
 
     .navbar-brand,
     .nav-link {
+        font-family: 'Roboto', sans-serif !important;
         color: black !important;
     }
 }
 
 .active {
     /* 当前激活的导航链接样式 */
-    font-weight: bold;
-    color: #ffcc00 !important; // 此处为示例颜色，可根据需求修改
+    font-weight: 900 !important;
+    color: #ffffff !important; // 此处为示例颜色，可根据需求修改
 }
