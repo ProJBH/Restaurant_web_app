@@ -1,3 +1,8 @@
+:global(.navbar-brand) img {
+    width: 45px !important; // 根据需要调整宽度
+    height: auto; // 保持图片比例
+}
+
 .navbarCustom {
     background-color: #cd8b10; // 可选：更改背景颜色为浅色
 
