@@ -1,47 +1,56 @@
 .popularFoodCarousel {
-    display: flex;
-    width: 100%;
-    height: 600px; // 可根据需要调整整体高度
-    position: relative;
-  }
-  
-  .leftColumn {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .topLeft,
-  .bottomLeft {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-  }
-  
-  .flavors {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .rightColumn {
-    width: 50%;
-    position: relative;
-  }
-  
-  /* 修改轮播图区域，设置宽高为90%并自动居中 */
-  .carouselContainer {
-    width: 90%;
-    height: 90%;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.5rem;
-  }
-  
-  .indicatorContainer {
-    bottom: 1rem !important;
-  }
+  background-image: url("../../../public/assets/RestaurantBackground.jpg");
+  display: flex;
+  width: 100%;
+  height: 600px; // 可根据需要调整整体高度
+  position: relative;
+}
+
+.leftColumn {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topLeft,
+.bottomLeft {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.flavors {
+  color: #fff;
+  font-size: 1.5rem; /* 根据需要调节字号 */
+  line-height: 1.4; /* 保证行距舒适 */
+  margin-top: 10rem;
+  background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8); /* 文字阴影，让文字边缘更清晰 */
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.rightColumn {
+  margin: 5rem;
+  width: 50%;
+  position: relative;
+}
+
+/* 修改轮播图区域，设置宽高为90%并自动居中 */
+.carouselContainer {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.indicatorContainer {
+  bottom: 1rem !important;
+}
