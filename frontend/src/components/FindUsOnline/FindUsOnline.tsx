@@ -1,8 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./FindUsOnline.module.scss";
-import foodora from "../../assets/Foodora.png";
-import wolt from "../../assets/Wolt.jpg";
+
 
 const FindUsOnline: React.FC = () => {
   return (
@@ -22,7 +21,7 @@ const FindUsOnline: React.FC = () => {
           className={styles.iconLinkFoodora}
         >
           <img
-            src={foodora}
+            src={'/assets/Foodora.png'}
             alt="Foodora"
             className={styles.iconFoodora}
           />
@@ -34,7 +33,7 @@ const FindUsOnline: React.FC = () => {
           className={styles.iconLinkWolt}
         >
           <img
-            src={wolt}
+            src={'/assets/Wolt.jpg'}
             alt="Wolt"
             className={styles.iconWolt}
           />

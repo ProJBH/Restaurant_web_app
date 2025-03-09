@@ -4,11 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import DiscountCarousel from "../components/DiscountCarousel/DiscountCarousel";
 import PopularFoodCarousel from "../components/PopularFoodCarousel/PopularFoodCarousel";
-import springRoll from "../assets/SpringRoll.jpg";
-import dongpoPork from "../assets/DongpoPork.jpg";
-import spicyNoodles from "../assets/SpicyNoodles.jpg";
-import grilledChicken from "../assets/GrilledChicken.jpg";
-import freshSalad from "../assets/FreshSalad.jpg";
 import FindUsOnline from "../components/FindUsOnline/FindUsOnline";
 import Contact from "../components/Contact/Contact";
 
@@ -16,7 +11,7 @@ const HomePage: React.FC = () => {
   const discountItems = [
     {
       id: 1,
-      image: springRoll,
+      image: "/assets/SpringRoll.jpg",
       discount: '50% OFF',
       title: 'Spring Rolls',
       originalPrice: 98,
@@ -25,7 +20,7 @@ const HomePage: React.FC = () => {
     },
     {
       id: 2,
-      image: dongpoPork,
+      image: "assets/DongpoPork.jpg",
       discount: '30% OFF',
       title: 'Dongpo Pork',
       originalPrice: 88,
@@ -44,17 +39,17 @@ const HomePage: React.FC = () => {
   const popularItems = [
     {
       id: 1,
-      image: spicyNoodles, // 可替换为热门餐品图片
+      image: "/assets/SpicyNoodles.jpg",
       title: 'Spicy Noodles'
     },
     {
       id: 2,
-      image: grilledChicken, // 可替换为热门餐品图片
+      image: "/assets/GrilledChicken.jpg",
       title: 'Grilled Chicken'
     },
     {
       id: 3,
-      image: freshSalad, // 可替换为热门餐品图片
+      image: "/assets/FreshSalad.jpg",
       title: 'Fresh Salad'
     },
   ];

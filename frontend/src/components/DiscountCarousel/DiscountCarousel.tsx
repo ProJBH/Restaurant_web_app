@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./DiscountCarousel.module.scss";
-import onSale from "../../assets/OnSale.jpeg";
+
 
 interface CarouselItem {
   id: number;
@@ -66,7 +66,7 @@ const DiscountCarousel = ({
     <div
       className="position-relative overflow-hidden rounded-3 shadow-lg"
       style={{
-        backgroundImage: `url(${onSale})`,
+        backgroundImage: `url(/assets/OnSale.jpeg)`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center center",
         backgroundSize: "cover",
