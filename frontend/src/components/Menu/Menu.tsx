@@ -61,6 +61,7 @@ const Menu: React.FC = () => {
   return (
     <div className={styles.menuContainer}>
       <h1 className={styles.menuTitle}>Menu</h1>
+      <p className={styles.allergenInfo}>(Red font indicate potential allergen)</p>
       {categoriesOrder.map((cat) => (
         <section key={cat} className={styles.categorySection}>
           <h2 className={styles.categoryHeader}>
