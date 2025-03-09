@@ -7,7 +7,7 @@ function Navbar() {
     <nav className={`navbar navbar-expand-md fixed-top ${styles.navbarCustom}`}>
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
-          Restaurant
+          <img src="/assets/Logo.jpeg" alt="Restaurant Logo" />
         </Link>
         <button
           className="navbar-toggler"
