@@ -6,9 +6,15 @@ import styles from "./MenuPage.module.scss"; // 引入 CSS 模块
 
 const MenuPage: React.FC = () => {
   return (
-    <div className={styles.menuPageContainer}>
-      <Navbar />
-      <Menu />
+    <div>
+      <div>
+        <header>
+          <Navbar />
+        </header>
+      </div>
+      <div className={styles.menuPageContainer}>
+        <Menu />
+      </div>
     </div>
   );
 };

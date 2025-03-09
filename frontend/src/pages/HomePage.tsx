@@ -58,9 +58,8 @@ const HomePage: React.FC = () => {
     <div>
       <header>
         <Navbar />
-        <h1>""</h1>
       </header>
-      <section style={{ margin: "2rem 0" }}>
+      <section style={{ marginTop: "4.5rem" }}>
         <DiscountCarousel 
           items={discountItems}
           autoPlayInterval={5000}

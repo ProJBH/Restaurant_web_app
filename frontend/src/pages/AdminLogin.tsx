@@ -35,7 +35,11 @@ const AdminLogin: React.FC = () => {
 
   return (
     <div>
-      <Navbar />
+      <div>
+        <header>
+          <Navbar />
+        </header>
+      </div>
       <h1>Admin Login</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>

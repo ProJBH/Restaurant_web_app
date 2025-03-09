@@ -19,7 +19,11 @@ const BookingPage: React.FC = () => {
 
   return (
     <div>
-      <Navbar />
+      <div>
+        <header>
+          <Navbar />
+        </header>
+      </div>
       <h1>Book a Table</h1>
       <form onSubmit={handleSubmit}>
         <input name="name" placeholder="Your Name" value={form.name} onChange={handleChange} required />
