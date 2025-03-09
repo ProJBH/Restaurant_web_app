@@ -1,0 +1,14 @@
+.navbarCustom {
+    background-color: #f8f9fa; // 可选：更改背景颜色为浅色
+
+    .navbar-brand,
+    .nav-link {
+        color: black !important;
+    }
+}
+
+.active {
+    /* 当前激活的导航链接样式 */
+    font-weight: bold;
+    color: #ffcc00 !important; // 此处为示例颜色，可根据需求修改
+}
