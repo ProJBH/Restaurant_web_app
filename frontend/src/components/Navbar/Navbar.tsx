@@ -7,7 +7,7 @@ function Navbar() {
     <nav className={`navbar navbar-expand-md fixed-top ${styles.navbarCustom}`}>
       <div className="container-fluid">
         <Link to="/" className="navbar-brand">
-          <img src="/assets/Logo.jpeg" alt="Restaurant Logo" />
+          <img src="/assets/Logo.jpg" alt="Restaurant Logo" />
         </Link>
         <button
           className="navbar-toggler"
@@ -65,7 +65,7 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/about"
+                to="/aboutus"
                 className={({ isActive }) =>
                   "nav-link" + (isActive ? ` ${styles.active}` : "")
                 }
