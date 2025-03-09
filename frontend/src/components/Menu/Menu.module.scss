@@ -1,0 +1,67 @@
+/* Menu.module.scss */
+.menuContainer {
+  margin-top: 5rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.menuTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333333;
+  font-weight: bold;
+}
+
+.categorySection {
+  margin-bottom: 3rem;
+}
+
+.categoryHeader {
+  font-size: 2rem;
+  color: #555555;
+  border-bottom: 2px solid #cccccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.menuItemList {
+  list-style: none;
+  padding: 0;
+}
+
+.menuItem {
+  display: flex;
+  flex-wrap: wrap;  /* 允许换行 */  
+  justify-content: space-between;  /* 自动分散子项 */
+  align-items: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eaeaea;
+    transform: translateX(5px);
+  }
+}
+
+.itemName {
+  font-size: 1.2rem;
+  font-weight: 500;
+  /* 可以使用 flex-basis 或 max-width 控制宽度 */
+  flex: 1;
+}
+
+.itemPrice {
+  font-size: 1.2rem;
+  color: #888888;
+  /* 固定宽度或允许收缩 */
+  flex-shrink: 0;
+}
