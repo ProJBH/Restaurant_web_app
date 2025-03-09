@@ -1,6 +1,6 @@
 // src/pages/MenuPage.tsx
 import React from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 import Menu from "../components/Menu/Menu";
 import styles from "./MenuPage.module.scss"; // 引入 CSS 模块
 
