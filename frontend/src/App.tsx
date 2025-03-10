@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import BookingPage from './pages/BookingPage';
 import MenuPage from './pages/MenuPage';
-import AdminLogin from './pages/Login';
+import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import AboutUsPage from './pages/AboutUsPage';
 
@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Route path="/booking" element={<BookingPage />} />
         <Route path="/menu" element={<MenuPage />} />
         <Route path='/aboutus' element={<AboutUsPage />} />
-        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
     </Router>
