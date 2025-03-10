@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage';
 import BookingPage from './pages/BookingPage';
 import MenuPage from './pages/MenuPage';
 import LoginPage from './pages/LoginPage';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminDashBoardPage from './pages/AdminDashBoardPage';
 import AboutUsPage from './pages/AboutUsPage';
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <Route path="/menu" element={<MenuPage />} />
         <Route path='/aboutus' element={<AboutUsPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashBoardPage />} />
       </Routes>
     </Router>
   );
