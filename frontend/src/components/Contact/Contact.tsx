@@ -8,8 +8,8 @@ const Contact: React.FC = () => {
   const email = "contact@example.com";
 
   const openHours = [
-    { days: "周一到周五", hours: "11:00-22:00" },
-    { days: "周六日", hours: "11:00-24:00" },
+    { days: "Monday to Friday", hours: "11:00-22:00" },
+    { days: "Weekends", hours: "11:00-24:00" },
   ];
 
   return (
@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
 
         {/* 右侧：营业时间 */}
         <div className={styles.rightColumn}>
-          <h4>营业时间</h4>
+          <h4>Opening Hours</h4>
           <ul className={styles.hoursList}>
             {openHours.map((item, index) => (
               <li key={index} className={styles.hoursItem}>
