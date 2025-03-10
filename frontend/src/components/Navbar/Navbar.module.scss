@@ -18,3 +18,21 @@
     font-weight: 900 !important;
     color: #ffffff !important; // 此处为示例颜色，可根据需求修改
 }
+
+  
+  /* 针对登录链接进行样式调整 */
+  .loginLink {
+    text-decoration: none;
+    /* 确保内容在右侧对齐 */
+    margin-left: auto;
+  }
+  
+  .loginIcon {
+    width: 24px; /* 根据需求调整图标大小 */
+    height: 24px;
+    margin-right: 8px;
+  }
+  
+  .loginText {
+    color: black;
+  }
