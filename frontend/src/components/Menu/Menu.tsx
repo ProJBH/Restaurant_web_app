@@ -17,6 +17,7 @@ interface MenuItem {
   imageurl: string | null;
   ingredients: string;
   discount_percentage: number;
+  disable: number;
 }
 
 const Menu: React.FC = () => {
