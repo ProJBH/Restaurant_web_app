@@ -36,6 +36,7 @@ const Login: React.FC = () => {
       .then(response => {
         const { token, role } = response.data;
         localStorage.setItem('token', token);
+        localStorage.setItem('userEmail', form.email);
         if (role === 'admin') {
           navigate('/admin/dashboard');
         } else {
