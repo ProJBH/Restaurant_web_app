@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Menu from "../components/Menu/Menu";
-import styles from "./MenuPage.module.scss"; // 引入 CSS 模块
+import styles from "./CommonBackground.module.scss"; // 引入 CSS 模块
 
 const MenuPage: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const MenuPage: React.FC = () => {
       <header>
         <Navbar />
       </header>
-      <div className={styles.menuPageContainer}>
+      <div className={styles.backgroundContainer}>
         <Menu />
       </div>
     </div>

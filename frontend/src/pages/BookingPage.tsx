@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Navbar from "../components/Navbar/Navbar";
 import Booking from '../components/Booking/Booking';
-import styles from "./BookingPage.module.scss"; 
+import styles from "./CommonBackground.module.scss"; 
 
 const BookingPage: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const BookingPage: React.FC = () => {
           <Navbar />
         </header>
       </div>
-      <div className={styles.BookingPageContainer}>
+      <div className={styles.backgroundContainer}>
         <Booking />
       </div>
     </div>
