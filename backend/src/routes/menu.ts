@@ -1,93 +1,95 @@
-// src/routes/menu.ts
-import { Router, Request, Response } from 'express';
-import pool from '../db';
-import { verifyToken, AuthRequest } from '../middleware/auth';
-import multer from 'multer';
-import path from 'path';
+// src/menu.ts
+import { Router, Request, Response } from "express";
+import db from "../db"; // 使用提供的 db.ts
+import { verifyToken } from "../middleware/auth"; // 使用提供的 auth.ts
+import { RowDataPacket, ResultSetHeader } from "mysql2";
+// 定义 MenuItem 接口，与数据库 menu 表对应
+interface MenuItem {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  allergy: string;
+  description: string;
+  popular: number;
+  sale: number;
+  createtime: string;
+  lastedittime: string;
+  imageurl: string | null;
+  ingredients: string;
+  discount_percentage: number;
+  disable?: number;
+}
 
 const router = Router();
 
-// Configure Multer for file uploads
-
-// Defines a storage engine and tells Multer where and how to store uploaded files on disk.
-const storage = multer.diskStorage({
-
-  // Receives the request (req), the file object (file), and a callback (cb).  
-  destination: (req, file, cb) => {
-
-    // callback value set to null and compute the destination folder where files will be stored.
-    cb(null, path.join(__dirname, '../../public/uploads'));
-  },
-
-  /**
-   * 1. Generates a unique file name using the current timestamp and a random number.
-   * 2. Appends the original file extension using path.extname(file.originalname).
-   * 3. Calls the callback with null and the generated unique file name.
-   */
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+// GET /api/menu - 获取所有菜单项
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    // 指定返回类型为 (MenuItem & RowDataPacket)[]
+    const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu");
+    res.json(rows);
+  } catch (err) {
+    console.error("Error fetching menu items:", err);
+    res.status(500).json({ error: "Error fetching menu items" });
   }
 });
 
-// Creates an upload middleware instance by passing the storage configuration to Multer.
-// This middleware will later be used to handle single-file uploads in one of the routes.
-const upload = multer({ storage });
-
-// Get all menu items (public endpoint)
-router.get('/', async (req: Request, res: Response) => {
+router.post("/", verifyToken, async (req: Request, res: Response) => {
   try {
-    const [rows] = await pool.execute('SELECT * FROM menu');
-    // force rows to be [] in order to use .map functin, then Convert price to a number
-    const data = (rows as any[]).map(function(item: any) {
-      return { ...item, price: parseFloat(item.price) };
+    const { name, category, price, allergy, description } = req.body;
+    const query =
+      "INSERT INTO menu (name, category, price, allergy, description, popular, sale, imageurl, ingredients, discount_percentage) VALUES (?, ?, ?, ?, ?, 0, 0, NULL, '', 0)";
+    // 对插入结果做类型断言，result 为 ResultSetHeader
+    const [result] = await db.query(query, [name, category, price, allergy, description]) as [ResultSetHeader, any];
+    const insertedId = result.insertId;
+    // 查询新创建的记录，类型为 (MenuItem & RowDataPacket)[]
+    const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu WHERE id = ?", [insertedId]);
+    res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error("Error creating menu item:", err);
+    res.status(500).json({ error: "Error creating menu item" });
+  }
+});
+
+// PUT /api/menu/:id - 更新菜单项（包括更新 disable 字段）
+router.put("/:id", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const allowedFields = [
+      "name",
+      "category",
+      "price",
+      "allergy",
+      "description",
+      "popular",
+      "sale",
+      "imageurl",
+      "ingredients",
+      "discount_percentage",
+      "disable"
+    ];
+    const updates: string[] = [];
+    const values: any[] = [];
+    allowedFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        updates.push(`${field} = ?`);
+        values.push(req.body[field]);
+      }
     });
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
-  }
-});
-
-// Update or add a menu item (admin only)
-// For adding/updating text details (name, description, price)
-router.post('/', verifyToken, async (req: AuthRequest, res: Response) => {
-  // Only allow admin users
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ message: 'Access denied' });
-  }
-  const { id, name, description, price } = req.body;
-  try {
-    if (id) {
-      // update existing
-      await pool.execute(
-        'UPDATE menu_items SET name = ?, description = ?, price = ? WHERE id = ?',
-        [name, description, price, id]
-      );
-      res.json({ message: 'Menu item updated' });
-    } else {
-      // insert new
-      await pool.execute(
-        'INSERT INTO menu_items (name, description, price) VALUES (?, ?, ?)',
-        [name, description, price]
-      );
-      res.json({ message: 'Menu item added' });
+    if (updates.length === 0) {
+      return res.status(400).json({ error: "No valid fields to update" });
     }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    const query = `UPDATE menu SET ${updates.join(", ")} WHERE id = ?`;
+    values.push(id);
+    await db.query(query, values);
+    // 查询更新后的记录，类型为 (MenuItem & RowDataPacket)[]
+    const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu WHERE id = ?", [id]);
+    res.json(rows[0]);
+  } catch (err) {
+    console.error("Error updating menu item:", err);
+    res.status(500).json({ error: "Error updating menu item" });
   }
-});
-
-// Upload an image for a menu item (admin only)
-router.post('/upload', verifyToken, upload.single('image'), async (req: AuthRequest, res: Response) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ message: 'Access denied' });
-  }
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
-  // Update the menu item record with the image URL.
-  const imageUrl = `/uploads/${req.file.filename}`;
-  res.json({ message: 'File uploaded', imageUrl });
 });
 
 export default router;
