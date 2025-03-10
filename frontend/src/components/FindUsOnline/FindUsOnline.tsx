@@ -9,7 +9,7 @@ const FindUsOnline: React.FC = () => {
       {/* 上部分：描述信息 */}
       <div className={styles.topSection}>
         <p>
-          您可以通过以下平台在线找到我们，了解更多信息或下单订餐！
+        Du kan finne oss online via følgende plattformer for å lære mer eller legge inn en bestilling!
         </p>
       </div>
       {/* 下部分：图标链接 */}
