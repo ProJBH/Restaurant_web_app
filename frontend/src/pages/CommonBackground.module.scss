@@ -1,0 +1,10 @@
+.backgroundContainer {
+  // /assets/RestaurantBackground.jpg 是相对于 public 文件夹的路径
+  background-image: url('../../public/assets/RestaurantBackground.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;  // 确保容器至少充满整个视口高度
+}
+
+  
