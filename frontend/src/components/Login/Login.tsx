@@ -11,10 +11,10 @@ interface Form {
 }
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState<Form>({ email: '', password: '', confirmPassword: '' });
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm(prevForm => ({ ...prevForm, [e.target.name]: e.target.value }));
   };
 
   const handleLoginSubmit = (e: React.FormEvent) => {
@@ -35,12 +35,11 @@ const Login: React.FC = () => {
     })
       .then(response => {
         const { token, role } = response.data;
+        localStorage.setItem('token', token);
         if (role === 'admin') {
-          localStorage.setItem('token', token);
           navigate('/admin/dashboard');
         } else {
-            localStorage.setItem('token', token);
-            navigate('/customer/dashboard');
+          navigate('/customer/dashboard');
         }
       })
       .catch(() => setError('Login failed.'));
@@ -52,97 +51,102 @@ const Login: React.FC = () => {
       setError("Passwords do not match.");
       return;
     }
-    // Temporarily log user info to console
-    console.log({
+    console.log('Register info:', {
       email: form.email,
       password: form.password,
     });
+    setError('Registration functionality is not yet implemented.');
   };
 
   return (
-    <div className={`container ${styles.container}`} style={{ marginTop: '5rem' }}>
-      <h1>{isLogin ? 'Admin Login' : 'Create Account'}</h1>
-      {error && <p className="text-danger">{error}</p>}
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h2 className="mb-3 text-center">{isLogin ? 'Login' : 'Create Account'}</h2>
+        {error && <p className={styles.error}>{error}</p>}
 
-      {isLogin ? (
-        <form onSubmit={handleLoginSubmit}>
-          <input 
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="form-control mb-3"
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            className="form-control mb-3"
-          />
-          <button type="submit" className="btn btn-primary w-100">Login</button>
-          <p className="mt-2">
-            No account?{' '}
-            <span
-              className="text-primary"
-              style={{ cursor: 'pointer', textDecoration: 'underline' }}
-              onClick={() => {
-                setIsLogin(false);
-                setError('');
-                setForm({ email: '', password: '', confirmPassword: '' });
-              }}
-            >
-              Create Account
-            </span>
-          </p>
-        </form>
-      ) : (
-        <form onSubmit={handleRegisterSubmit}>
-          <input
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="form-control mb-3"
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            className="form-control mb-3"
-          />
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            required
-            className="form-control mb-3"
-          />
-          <button type="submit" className="btn btn-success mb-2 w-100">Register</button>
-          <p>
-            <span
-              className="text-primary"
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                setIsLogin(true);
-                setError('');
-                setForm({ email: '', password: '', confirmPassword: '' });
-              }}
-            >
-              Back to Login
-            </span>
-          </p>
-        </form>
-      )}
+        {isLogin ? (
+          <form onSubmit={handleLoginSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className={styles.input}
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className={styles.input}
+            />
+            <button type="submit" className="btn btn-primary mb-2 w-100">
+              Login
+            </button>
+            <p className={styles.toggleText}>
+              Don't have an account?{' '}
+              <span
+                className={styles.link}
+                onClick={() => {
+                  setIsLogin(false);
+                  setError('');
+                  setForm({ email: '', password: '', confirmPassword: '' });
+                }}
+              >
+                Create Account
+              </span>
+            </p>
+          </form>
+        ) : (
+          <form onSubmit={handleRegisterSubmit}>
+            <input
+              name="email"
+              placeholder="Email"
+              value={form.email}
+              onChange={handleChange}
+              required
+              className={styles.input}
+            />
+            <input
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className={styles.input}
+            />
+            <input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              required
+              className={styles.input}
+            />
+            <button type="submit" className="btn btn-success mb-2 w-100">Register</button>
+            <p className={styles.switchText}>
+              Already have an account?{' '}
+              <span
+                className={styles.link}
+                onClick={() => {
+                  setIsLogin(true);
+                  setError('');
+                  setForm({ email: '', password: '', confirmPassword: '' });
+                }}
+              >
+                Back to Login
+              </span>
+            </p>
+          </form>
+        )}
+        {error && <p className={styles.error}>{error}</p>}
+      </div>
     </div>
   );
 };
