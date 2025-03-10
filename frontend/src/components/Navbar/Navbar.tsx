@@ -1,8 +1,31 @@
-// frontend/src/components/Navbar/Navbar.tsx
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import styles from "./Navbar.module.scss";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      // 假设登录后将用户 email 保存在 localStorage 中
+      const email = localStorage.getItem("userEmail");
+      setUserEmail(email ? email : "User");
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleUserClick = () => {
+    // 当已登录时，点击跳转到 admin dashboard
+    if (isLoggedIn) {
+      navigate("/admin/dashboard");
+    }
+  };
+
   return (
     <nav className={`navbar navbar-expand-md fixed-top ${styles.navbarCustom}`}>
       <div className="container-fluid">
@@ -74,10 +97,23 @@ function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <Link to="/login" className={`d-flex align-items-center ${styles.loginLink}`}>
-            <img src="/assets/Login.png" alt="Login" className={styles.loginIcon} />
-            <span className={styles.loginText}>Login</span>
-          </Link>
+          {isLoggedIn ? (
+            // 已登录时，显示 "Hello, {userEmail}"，点击跳转到 /admin/dashboard
+            <div
+              onClick={handleUserClick}
+              className={`d-flex align-items-center ${styles.loginLink}`}
+              style={{ cursor: "pointer" }}
+            >
+              <img src="/assets/Login.png" alt="User" className={styles.loginIcon} />
+              <span className={styles.loginText}>Hello, {userEmail}</span>
+            </div>
+          ) : (
+            // 未登录时，显示 "Login" 链接
+            <Link to="/login" className={`d-flex align-items-center ${styles.loginLink}`}>
+              <img src="/assets/Login.png" alt="Login" className={styles.loginIcon} />
+              <span className={styles.loginText}>Login</span>
+            </Link>
+          )}
         </div>
       </div>
     </nav>
