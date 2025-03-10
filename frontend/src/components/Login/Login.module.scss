@@ -1,0 +1,20 @@
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  }
+  
+  .custom-btn {
+    width: 100% !important; // 强制100%宽度覆盖原有样式
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
