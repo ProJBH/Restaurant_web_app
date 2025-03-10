@@ -73,28 +73,11 @@ function Navbar() {
                 About Us
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                to="/admin/login"
-                className={({ isActive }) =>
-                  "nav-link" + (isActive ? ` ${styles.active}` : "")
-                }
-              >
-                Login
-              </NavLink>
-            </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          <Link to="/login" className={`d-flex align-items-center ${styles.loginLink}`}>
+            <img src="/assets/Login.png" alt="Login" className={styles.loginIcon} />
+            <span className={styles.loginText}>Login</span>
+          </Link>
         </div>
       </div>
     </nav>
