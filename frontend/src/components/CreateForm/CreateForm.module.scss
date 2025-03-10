@@ -1,0 +1,49 @@
+// src/components/CreateForm.module.scss
+.createFormContainer {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .formRow {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .label {
+    width: 150px;
+    text-align: right;
+    margin-right: 1rem;
+  }
+  
+  .input,
+  .textarea {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .textarea {
+    resize: vertical;
+  }
+  
+  .buttonContainer {
+    text-align: center;
+  }
+  
+  .button {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  

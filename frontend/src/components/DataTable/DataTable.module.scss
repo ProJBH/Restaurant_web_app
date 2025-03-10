@@ -1,0 +1,23 @@
+// src/components/DataTable.module.scss
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .headerCell {
+    background-color: #f2f2f2;
+    padding: 8px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .dataRow {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cell {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  

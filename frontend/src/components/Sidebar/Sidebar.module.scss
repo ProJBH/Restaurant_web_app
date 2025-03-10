@@ -1,0 +1,22 @@
+// src/components/Sidebar.module.scss
+.sidebar {
+    width: 200px;
+    border-right: 1px solid #ccc;
+    padding: 1rem;
+  }
+  
+  .menuList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .menuItem {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-weight: normal;
+  }
+  
+  .menuItem.active {
+    font-weight: bold;
+  }
+  
