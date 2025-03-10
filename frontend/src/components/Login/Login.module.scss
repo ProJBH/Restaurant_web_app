@@ -1,20 +1,60 @@
 .container {
-    max-width: 500px;
-    margin: 0 auto;
-    margin-top: 5rem;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.15);
-  }
-  
-  .custom-btn {
-    width: 100% !important; // 强制100%宽度覆盖原有样式
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
   }
   
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .input {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .loginButton {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .error {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .toggleText{
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .switchText {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .link {
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .link:hover {
+    color: #0056b3;
+  }
   
