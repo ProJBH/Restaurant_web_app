@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -7,52 +8,97 @@ import PopularFoodCarousel from "../components/PopularFoodCarousel/PopularFoodCa
 import FindUsOnline from "../components/FindUsOnline/FindUsOnline";
 import Contact from "../components/Contact/Contact";
 
+interface MenuItem {
+  id: number;
+  name: string;
+  category: string;
+  price: string; // Original price as string
+  allergy: string;
+  description: string;
+  popular: number;
+  sale: number;
+  createtime: string;
+  lastedittime: string;
+  imageurl: string | null;
+  ingredients: string;
+  discount_percentage: number;
+  disable?: number;
+  discountedPrice: number; // Computed discounted price
+  timeLimit?: string; // Optional time limit
+}
+
 const HomePage: React.FC = () => {
-  const discountItems = [
-    {
-      id: 1,
-      image: "/assets/SpringRoll.jpg",
-      discount: '50% OFF',
-      title: 'Spring Rolls',
-      originalPrice: 98,
-      discountedPrice: 49,
-      timeLimit: '12:34:56'
-    },
-    {
-      id: 2,
-      image: "assets/DongpoPork.jpg",
-      discount: '30% OFF',
-      title: 'Dongpo Pork',
-      originalPrice: 88,
-      discountedPrice: 61,
-    },
-    {
-      id: 3,
-      image: 'discount3.jpg',
-      discount: '40% OFF',
-      title: 'Dish 3',
-      originalPrice: 108,
-      discountedPrice: 65,
-    },
-  ];
+  const [discountItems, setDiscountItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   const popularItems = [
     {
       id: 1,
       image: "/assets/SpicyNoodles.jpg",
-      title: 'Spicy Noodles'
+      title: "Spicy Noodles",
     },
     {
       id: 2,
       image: "/assets/GrilledChicken.jpg",
-      title: 'Grilled Chicken'
+      title: "Grilled Chicken",
     },
     {
       id: 3,
       image: "/assets/FreshSalad.jpg",
-      title: 'Fresh Salad'
+      title: "Fresh Salad",
     },
   ];
+
+  useEffect(() => {
+    axios.get("/api/menu")
+      .then((response) => {
+        const data = response.data;
+        if (!Array.isArray(data)) {
+          setError("Invalid data format");
+          setLoading(false);
+          return;
+        }
+        // Filter items where sale equals 1
+        const saleItems = data.filter((item: any) => item.sale === 1);
+        const items = saleItems.map((item: any) => {
+          const discountPercentage = parseFloat(item.discount_percentage);
+          const discountedPrice = Math.round(parseFloat(item.price) * (1 - discountPercentage / 100));
+          return {
+            id: item.id,
+            name: item.name,
+            category: item.category,
+            price: item.price,
+            allergy: item.allergy,
+            description: item.description,
+            popular: item.popular,
+            sale: item.sale,
+            createtime: item.createtime,
+            lastedittime: item.lastedittime,
+            imageurl: item.imageurl,
+            ingredients: item.ingredients,
+            discount_percentage: discountPercentage,
+            disable: item.disable,
+            discountedPrice: discountedPrice,
+            timeLimit: item.timeLimit,
+          };
+        });
+        setDiscountItems(items);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching sale items", err);
+        setError("Error fetching sale items");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
@@ -60,10 +106,7 @@ const HomePage: React.FC = () => {
         <Navbar />
       </header>
       <section style={{ marginTop: "4.5rem" }}>
-        <DiscountCarousel 
-          items={discountItems}
-          autoPlayInterval={5000}
-        />
+        <DiscountCarousel items={discountItems} autoPlayInterval={5000} />
       </section>
       <section style={{ margin: "2rem 0" }}>
         <PopularFoodCarousel
@@ -73,7 +116,7 @@ const HomePage: React.FC = () => {
         />
       </section>
       <section style={{ margin: "2rem 0" }}>
-      <FindUsOnline /> 
+        <FindUsOnline />
       </section>
       <section style={{ margin: "2rem 0" }}>
         <Contact />
