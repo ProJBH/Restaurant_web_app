@@ -1,9 +1,10 @@
 // src/menu.ts
 import { Router, Request, Response } from "express";
-import db from "../db"; // 使用提供的 db.ts
-import { verifyToken } from "../middleware/auth"; // 使用提供的 auth.ts
+import db from "../db";
+import { verifyToken } from "../middleware/auth";
 import { RowDataPacket, ResultSetHeader } from "mysql2";
-// 定义 MenuItem 接口，与数据库 menu 表对应
+import multer from "multer";
+
 interface MenuItem {
   id: number;
   name: string;
@@ -21,12 +22,20 @@ interface MenuItem {
   disable?: number;
 }
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/Users/projbh/Github_projects/Restaurant_web_app/frontend/public/assets');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
+
 const router = Router();
 
-// GET /api/menu - 获取所有菜单项
 router.get("/", async (req: Request, res: Response) => {
   try {
-    // 指定返回类型为 (MenuItem & RowDataPacket)[]
     const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu");
     res.json(rows);
   } catch (err) {
@@ -35,15 +44,18 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/", verifyToken, async (req: Request, res: Response) => {
+// 支持 multipart/form-data，处理文件上传以及 ingredients 字段
+router.post("/", verifyToken, upload.single("image"), async (req: Request, res: Response) => {
   try {
-    const { name, category, price, allergy, description } = req.body;
+    const { name, category, price, allergy, description, ingredients } = req.body;
+    let imageUrl: string | null = null;
+    if (req.file) {
+      imageUrl = "../assets/" + req.file.filename;
+    }
     const query =
-      "INSERT INTO menu (name, category, price, allergy, description, popular, sale, imageurl, ingredients, discount_percentage) VALUES (?, ?, ?, ?, ?, 0, 0, NULL, '', 0)";
-    // 对插入结果做类型断言，result 为 ResultSetHeader
-    const [result] = await db.query(query, [name, category, price, allergy, description]) as [ResultSetHeader, any];
+      "INSERT INTO menu (name, category, price, allergy, description, popular, sale, imageurl, ingredients, discount_percentage) VALUES (?, ?, ?, ?, ?, 0, 0, ?, ?, 0)";
+    const [result] = await db.query(query, [name, category, price, allergy, description, imageUrl, ingredients]) as [ResultSetHeader, any];
     const insertedId = result.insertId;
-    // 查询新创建的记录，类型为 (MenuItem & RowDataPacket)[]
     const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu WHERE id = ?", [insertedId]);
     res.status(201).json(rows[0]);
   } catch (err) {
@@ -52,7 +64,7 @@ router.post("/", verifyToken, async (req: Request, res: Response) => {
   }
 });
 
-// PUT /api/menu/:id - 更新菜单项（包括更新 disable 字段）
+// PUT 接口保持不变
 router.put("/:id", verifyToken, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -83,7 +95,6 @@ router.put("/:id", verifyToken, async (req: Request, res: Response) => {
     const query = `UPDATE menu SET ${updates.join(", ")} WHERE id = ?`;
     values.push(id);
     await db.query(query, values);
-    // 查询更新后的记录，类型为 (MenuItem & RowDataPacket)[]
     const [rows] = await db.query<(MenuItem & RowDataPacket)[]>("SELECT * FROM menu WHERE id = ?", [id]);
     res.json(rows[0]);
   } catch (err) {
