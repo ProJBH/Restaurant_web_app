@@ -2,6 +2,8 @@
 
 A dynamic restaurant management system developed as an independent project (Dec 2024 – Present) that showcases full-stack development expertise. Designed and developed with React for the frontend and Node.js/Express for the backend, this application incorporates a secure JWT-based authentication system with bcrypt.js password hashing, robust RESTful API endpoints with comprehensive error handling, and a MySQL database for data management. The responsive UI built with Bootstrap ensures seamless compatibility across various devices.
 
+[![Project Demo video](demoVideo.png)](https://youtu.be/FC11cGu0tb4)
+
 ## Table of Contents
 
 - [Overview](#overview)
