@@ -37,11 +37,15 @@ const PopularFoodCarousel = ({
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
+    let interval: number;
     if (isAutoPlay) {
-      interval = setInterval(nextSlide, autoPlayInterval);
+      interval = window.setInterval(nextSlide, autoPlayInterval);
     }
-    return () => interval && clearInterval(interval);
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
   }, [isAutoPlay, nextSlide, autoPlayInterval]);
 
   // 触摸事件处理，支持移动端滑动切换
