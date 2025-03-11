@@ -26,7 +26,7 @@ export const fetchMenuItems = () => {
 };
 
 // 创建新菜单项 (Create)
-export const createMenuItem = (item: Partial<MenuItem>) => {
+export const createMenuItem = (item: Partial<MenuItem> | FormData) => {
   const token = localStorage.getItem("token");
   return axios.post(API_URL, item, {
     headers: { Authorization: `Bearer ${token}` }
