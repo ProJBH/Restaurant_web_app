@@ -1,5 +1,4 @@
 // src/components/CreateForm.tsx
-// used in AdminDashBoardPage.tsx
 import React from "react";
 import styles from "./CreateForm.module.scss";
 
@@ -10,15 +9,21 @@ interface CreateFormProps {
     price: string;
     allergy: string;
     description: string;
+    ingredients: string; // 新增 ingredients 字段
   };
-  // 修改 onInputChange 的类型，支持 HTMLSelectElement
   onInputChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => void;
+  onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent) => void;
 }
 
-const CreateForm: React.FC<CreateFormProps> = ({ formData, onInputChange, onSubmit }) => {
+const CreateForm: React.FC<CreateFormProps> = ({
+  formData,
+  onInputChange,
+  onFileChange,
+  onSubmit,
+}) => {
   return (
     <div className={styles.createFormContainer}>
       <h2 className={styles.title}>Create Menu Item</h2>
@@ -83,6 +88,29 @@ const CreateForm: React.FC<CreateFormProps> = ({ formData, onInputChange, onSubm
             onChange={onInputChange}
             required
             className={styles.textarea}
+          />
+        </div>
+        {/* 新增 ingredients 输入项 */}
+        <div className={styles.formRow}>
+          <label className={styles.label}>Ingredients:</label>
+          <input
+            type="text"
+            name="ingredients"
+            placeholder="Ingredients"
+            value={formData.ingredients}
+            onChange={onInputChange}
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.formRow}>
+          <label className={styles.label}>Image:</label>
+          <input
+            type="file"
+            name="image"
+            onChange={onFileChange}
+            required
+            className={styles.input}
+            accept="image/*"
           />
         </div>
         <div className={styles.buttonContainer}>
