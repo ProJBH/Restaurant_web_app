@@ -107,19 +107,28 @@ const AdminDashBoardPage: React.FC = () => {
       setError("No item selected.");
       return;
     }
+
+    const discount = modalFormData.discount_percentage ? parseInt(modalFormData.discount_percentage) : 0;
+    let computedPrice = modalFormData.price;
+    if (discount > 0) {
+      const priceInput = parseFloat(modalFormData.price || "0");
+      computedPrice = (priceInput * (1 - discount / 100)).toString();
+    }
+
     const updatedItem: Partial<MenuItem> = {
       name: modalFormData.name,
       category: modalFormData.category,
-      price: modalFormData.price,
+      price: computedPrice,
       allergy: modalFormData.allergy,
       description: modalFormData.description,
       popular: modalFormData.popular ? parseInt(modalFormData.popular) : 0,
       sale: modalFormData.sale ? parseInt(modalFormData.sale) : 0,
       imageurl: modalFormData.imageurl,
       ingredients: modalFormData.ingredients,
-      discount_percentage: modalFormData.discount_percentage ? parseInt(modalFormData.discount_percentage) : 0,
+      discount_percentage: discount,
       disable: modalFormData.disable ? parseInt(modalFormData.disable) : 0
     };
+
     updateMenuItem(modalItem.id, updatedItem)
       .then(() => {
         setSuccess("Menu item updated successfully.");

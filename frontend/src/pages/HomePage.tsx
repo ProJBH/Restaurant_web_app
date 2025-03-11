@@ -23,7 +23,7 @@ interface MenuItem {
   ingredients: string;
   discount_percentage: number;
   disable?: number;
-  discountedPrice: number; // Computed discounted price
+  originalPrice: number; // Computed discounted price
   timeLimit?: string; // Optional time limit
 }
 
@@ -63,7 +63,7 @@ const HomePage: React.FC = () => {
         const saleItems = data.filter((item: any) => item.sale === 1);
         const items = saleItems.map((item: any) => {
           const discountPercentage = parseFloat(item.discount_percentage);
-          const discountedPrice = Math.round(parseFloat(item.price) * (1 - discountPercentage / 100));
+          const originalPrice = Math.round(parseFloat(item.price) / (1 - discountPercentage / 100));
           return {
             id: item.id,
             name: item.name,
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
             ingredients: item.ingredients,
             discount_percentage: discountPercentage,
             disable: item.disable,
-            discountedPrice: discountedPrice,
+            originalPrice: originalPrice,
             timeLimit: item.timeLimit,
           };
         });
@@ -106,7 +106,7 @@ const HomePage: React.FC = () => {
         <Navbar />
       </header>
       <section style={{ marginTop: "4.5rem" }}>
-        <DiscountCarousel items={discountItems} autoPlayInterval={5000} />
+        <DiscountCarousel items={discountItems} autoPlayInterval={2000} />
       </section>
       <section style={{ margin: "2rem 0" }}>
         <PopularFoodCarousel

@@ -17,7 +17,7 @@ interface MenuItem {
   ingredients: string;
   discount_percentage: number;
   disable?: number;
-  discountedPrice: number; // Computed discounted price
+  originalPrice: number; // original price
   timeLimit?: string; // Optional time limit
 }
 
@@ -125,10 +125,10 @@ const DiscountCarousel = ({ items, autoPlayInterval = 5000 }: DiscountCarouselPr
                 <h3 className="mb-2">{item.name}</h3>
                 <div className="d-flex align-items-center mb-2">
                   <span className="text-decoration-line-through opacity-75 me-3">
-                    ¥{item.price}
+                    ¥{item.originalPrice}
                   </span>
                   <span className="fs-3 text-warning">
-                    ¥{item.discountedPrice}
+                    ¥{item.price}
                   </span>
                 </div>
                 {item.timeLimit && (
