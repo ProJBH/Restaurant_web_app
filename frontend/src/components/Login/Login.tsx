@@ -146,7 +146,6 @@ const Login: React.FC = () => {
             </p>
           </form>
         )}
-        {error && <p className={styles.error}>{error}</p>}
       </div>
     </div>
   );
