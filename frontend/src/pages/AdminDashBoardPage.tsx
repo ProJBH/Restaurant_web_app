@@ -36,7 +36,8 @@ const AdminDashBoardPage: React.FC = () => {
     category: "",
     price: "",
     allergy: "",
-    description: ""
+    description: "",
+    ingredients: ""
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -44,6 +45,7 @@ const AdminDashBoardPage: React.FC = () => {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [modalItem, setModalItem] = useState<MenuItem | null>(null);
   const [modalFormData, setModalFormData] = useState<Partial<ModalFormData>>({});
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -67,19 +69,30 @@ const AdminDashBoardPage: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+    }
+  };
+  
   const handleCreateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newItem: Partial<MenuItem> = {
-      name: formData.name,
-      category: formData.category,
-      price: formData.price,
-      allergy: formData.allergy,
-      description: formData.description
-    };
-    createMenuItem(newItem)
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("category", formData.category);
+    formDataToSend.append("price", formData.price);
+    formDataToSend.append("allergy", formData.allergy);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("ingredients", formData.ingredients); 
+    if (imageFile) {
+      // 上传文件后，服务器将文件保存到 /public/assets，前端构造 image URL 为 "../assets/" + 文件名
+      formDataToSend.append("image", imageFile, imageFile.name);
+    }
+    createMenuItem(formDataToSend)
       .then(() => {
         setSuccess("Menu item created successfully.");
-        setFormData({ name: "", category: "", price: "", allergy: "", description: "" });
+        setFormData({ name: "", category: "", price: "", allergy: "", description: "",ingredients: "" });
+        setImageFile(null);
         loadMenuItems();
       })
       .catch(err => {
@@ -176,6 +189,7 @@ const AdminDashBoardPage: React.FC = () => {
             <CreateForm
               formData={formData}
               onInputChange={handleCreateInputChange}
+              onFileChange={handleFileChange}
               onSubmit={handleCreateSubmit}
             />
           ) : (
