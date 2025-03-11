@@ -37,11 +37,13 @@ The Restaurant Management Web App is an independent project initiated in Decembe
 
 ## Project Highlights
 
-- **Full-Stack Development:** Designed and developed using React (frontend) and Node.js/Express (backend).
-- **Secure Authentication:** Implemented a secure JWT-based authentication system with bcrypt.js password hashing.
-- **Robust API:** Developed RESTful API endpoints with comprehensive error handling.
-- **Responsive Design:** Created a responsive UI with Bootstrap ensuring compatibility across devices.
-- **MySQL Integration:** Integrated a MySQL database for reliable data management.
+- **Full-Stack Development:** React and Bootstrap are used on the front end to achieve responsive design, and Node.js and Express are used on the back end to build a RESTful API.
+- **Secure Authentication:** JWT is used for user authentication, and bcrypt.js is used to implement secure password hash storage.
+- **Robust CRUD Operations:** Complete menu item management is implemented, including creating, reading, updating, and disabling menu items, supporting file uploads and instant data updates.
+- **Responsive UI with Carousel:** The home page provides a carousel display of popular dishes (PopularFoodCarousel) and discounted dishes (DiscountCarousel) to optimize the user interaction experience.
+- **MySQL Integration:** MySQL database is used for data storage, and Axios is used to efficiently handle front-end and back-end communications.
+- **Admin Dashboard:** An admin dashboard page (AdminDashBoardPage) is provided to simplify data maintenance and business operations.
+- **Interactive Components:** Provides functional components such as data table (DataTable), sidebar (Sidebar), navigation bar (Navbar) and menu detail modal box (EditModal).
 
 ## Project Structure Overview
 
@@ -71,42 +73,43 @@ For a detailed view of the project structure, click below:
 
 ```plaintext
 ├── backend
-│   ├── dist
-│   ├── node_modules
-│   ├── public
 │   ├── src
 │   │   ├── middleware
-│   │   │   └── auth.ts
+│   │   │   └── auth.ts (JWT authentication middleware)
 │   │   ├── routes
-│   │   │   ├── auth.ts
-│   │   │   └── menu.ts
-│   │   ├── db.ts
-│   │   └── index.ts
-│   ├── .env
-│   ├── hash_func.js
-│   ├── note
-│   ├── package.json
-│   ├── package-lock.json
-│   └── tsconfig.json
+│   │   │   ├── auth.ts (Authentication routes)
+│   │   │   └── menu.ts (Menu CRUD routes)
+│   │   ├── db.ts (MySQL database connection)
+│   │   └── index.ts (Express server main entry)
+│   ├── public (Uploaded assets like images)
+│   ├── .env (Environment variables)
+│   ├── hash_func.js (Password hashing utility)
+│   └── package.json, tsconfig.json (Dependencies & configuration)
+│
 └── frontend
-    ├── node_modules
-    ├── public
+    ├── public (Static files & images)
     ├── src
-    │   ├── pages
-    │   ├── App.css
-    │   ├── App.test.tsx
-    │   ├── App.tsx
-    │   ├── custom.d.ts
-    │   ├── index.css
-    │   ├── index.tsx
-    │   ├── logo.svg
-    │   ├── reportWebVitals.ts
-    │   └── setupTests.ts
-    ├── .gitignore
-    ├── package.json
-    ├── package-lock.json
-    ├── README.md
-    └── tsconfig.json
+    │   ├── components (Reusable React components)
+    │   │   ├── Navbar (Navigation bar with conditional login state)
+    │   │   ├── Sidebar (Sidebar navigation for CRUD operations)
+    │   │   ├── DataTable (Dynamic table for menu items management)
+    │   │   ├── CreateForm (Form for creating new menu items, with file upload support)
+    │   │   ├── EditModal (Modal form for editing or disabling menu items)
+    │   │   ├── PopularFoodCarousel (Popular food items carousel with touch and swipe support)
+    │   │   └── DiscountCarousel (Discounted items carousel with autoplay feature)
+    │   │
+    │   ├── pages (App pages managed via React Router)
+    │   │   ├── HomePage.tsx (Main landing page displaying carousel components)
+    │   │   ├── AdminDashBoardPage.tsx (Admin dashboard for managing CRUD operations)
+    │   │   ├── LoginPage.tsx (User login page with protected route logic)
+    │   │   ├── Menu.tsx (Interactive menu listing with modal item detail views)
+    │   │   └── BookingPage.tsx (Table booking page)
+    │   │
+    │   ├── App.tsx, index.tsx (React entry points)
+    │   └── styles (Global SCSS modules for consistent UI styling)
+    │
+    ├── package.json, tsconfig.json (Dependencies & configuration)
+    └── README.md (Project documentation)
 ```
 </details>
 ## Installation
@@ -163,8 +166,17 @@ For a detailed view of the project structure, click below:
 ## Usage
 
 Once the application is running:
-- **Frontend:** Access the web app at [http://localhost:3000](http://localhost:3000).
-- **Backend:** Available at [http://localhost:5001](http://localhost:5000).
+- **Frontend:** Visit http://localhost:3000 to browse the homepage, menu page and reservation page.
+-The homepage provides a carousel of popular dishes and limited-time discounts.
+-The menu page supports clicking to view dish details.
+-The login page provides administrator authentication to enter the backend.
+- **Backend:** The API service runs on http://localhost:5001, including:
+-User login and JWT verification: /api/auth/login
+-Menu data CRUD interface: /api/menu
+- **Admin Dashboard:**
+-After logging in, visit http://localhost:3000/admin/dashboard.
+-Supports adding, editing, disabling and real-time updating of menu data.
+-Provides file upload (picture) function, which is automatically stored on the server after uploading and generates a URL.
 
 ## Contributing
 This project is a personal portfolio piece that demonstrates my independent work and technical capabilities. While I welcome feedback and suggestions for improvement, the repository is not actively seeking external contributions at this time.
@@ -175,4 +187,4 @@ For further information or inquiries, please contact [nzbohuajia@gmail.com].
 
 - **CI/CD Pipelines:** Integrate automated CI/CD pipelines for continuous testing, integration, and deployment.
 - **UI Enhancements:** Expand the frontend by incorporating additional custom CSS styles, high-quality images, and multimedia assets to further refine the user experience and visual appeal.
-
+- **OrderOnline**
